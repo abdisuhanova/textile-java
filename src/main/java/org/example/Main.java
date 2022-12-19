@@ -24,7 +24,7 @@ public class Main {
                     chooseUsers();
                 }
 
-                // Выбор Аккаунта
+                // Account choice
                 public static String chooseUsers() throws IOException {
                     Scanner sc = new Scanner(System.in);
 
@@ -72,7 +72,7 @@ public class Main {
                     return "";
                 }
 
-                // Авторизация директора
+                // Providers autorization
                 public static void providerInputLgPw() {
                     Scanner sc = new Scanner(System.in);
 
@@ -119,7 +119,7 @@ public class Main {
                     } while (true);
                 }
 
-                // Provider authorization
+                // Salemans authorization
                 public static void salemanInputLgPw() throws IOException {
                     Scanner sc = new Scanner(System.in);
 
@@ -158,7 +158,7 @@ public class Main {
                     } while (true);
                 }
 
-                // Авторизация курьера
+                // Deliverymans autorization
                 public static void deliverymanInputLgPw() throws IOException {
                     Scanner sc = new Scanner(System.in);
 
@@ -578,7 +578,7 @@ public class Main {
                     } catch (IOException e) {
                         System.out.println(e);
                     } finally {
-                        System.out.println("Был показан список заказанной техники на данный момент.");
+                        System.out.println("Ordered textile was shown for current time.");
                     }
                 }
 
@@ -650,7 +650,7 @@ public class Main {
                         int count = 0;
                         String letter = "";
                         Scanner input = new Scanner(System.in);
-                        System.out.print("Введите-->");
+                        System.out.print("Enter-->");
                         String delThing = input.next();
                         Scanner scanner = new Scanner(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt"));
                         boolean haveIt = false;
@@ -663,8 +663,8 @@ public class Main {
                             }
                         }
                         if (haveIt == false) {
-                            System.out.println("Такой техники нет в файле.");
-                            System.out.print("Желаете выйти[0] или повторить[1]?-->");
+                            System.out.println("There's no textile like this in a file");
+                            System.out.print("Do you want to exit[0] or try again[1]?-->");
                             int ask = input.nextInt();
                             if (ask == 1) {
                                 Delete();
@@ -686,7 +686,7 @@ public class Main {
                     } catch (IOException e) {
                         System.out.println(e);
                     } finally {
-                        System.out.println("Был показан обновленный список заказанной техники на данный момент.");
+                        System.out.println("Updated version of list of ordered textiles was shown.");
                     }
                 }
 
@@ -696,11 +696,11 @@ public class Main {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-            // Действия курьера
+            // Deliverymans actions
             public static void deliverymanActions() throws IOException {
                 Scanner sc = new Scanner(System.in);
-                System.out.println("Меню:");
-                System.out.println("(1)Список бытовой техники для доставки.");
+                System.out.println("Menu:");
+                System.out.println("(1)List of textiles for delivery.");
                 System.out.println("(2)Доставленная бытовая техника.");
                 System.out.println("(3)Доставить бытовую технику.");
                 System.out.println("(4)Количество доставленной бытовой.");
