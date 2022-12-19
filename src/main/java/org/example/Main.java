@@ -485,7 +485,7 @@ public class Main {
                     FileInputStream file = new FileInputStream(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\БытоваяТехника.xlsx"));
                     XSSFWorkbook workbook = new XSSFWorkbook(file);
                     XSSFSheet sheet = workbook.getSheetAt(0);
-                    System.out.print("Введите название техники или серийный номер-->");
+                    System.out.print("Enter the name of textile or id-->");
                     String search = input.nextLine();
                     Iterator<Row> rowIterator = sheet.iterator();
                     while (rowIterator.hasNext()) {
@@ -720,7 +720,7 @@ public class Main {
                         case "action1":
                         case "Action1":
                         case "1":
-                            //СПИСОК ЗАКАЗАННОЙ ТЕХНИКИ.
+                            //LIST OF ORDERED TEXTILES.
                             try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt"))) {
                                 String line = null;
                                 while ((line = br.readLine()) != null) {
@@ -777,7 +777,7 @@ public class Main {
                                 while (i <= appliances.size()) {
                                     if (i == appliances.size()) {
                                         bw.close();
-                                        System.out.println("Доставлено!");
+                                        System.out.println("Delivered!");
                                         break;
                                     } else {
                                         bw.newLine();
@@ -794,7 +794,7 @@ public class Main {
                         case "action4":
                         case "Action4":
                         case "4":
-                            //--КОЛ-ВО ДОСТАВЛЕННОЙ БЫТ.ТЕХНИКИ--
+                            //--Quantity of delivered textile--
                             try {
 
                                 File myFile = new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt");
@@ -814,7 +814,7 @@ public class Main {
                                 String lineNumber1 = String.valueOf(lineNumber);
                                 File newFile = new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\kol.txt");
                                 FileWriter fileWriter = new FileWriter(newFile);
-                                fileWriter.write(lineNumber1 + " Строк в файле: " + "C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt");
+                                fileWriter.write(lineNumber1 + " Lines in a file: " + "C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt");
                                 fileWriter.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
