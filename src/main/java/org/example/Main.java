@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -78,15 +79,7 @@ public class Main {
 
                     ArrayList<String> loginArrayList = new ArrayList<String>();
                     ArrayList<String> passwordArrayList = new ArrayList<String>();
-                    loginArrayList.add("Saleman");
                     loginArrayList.add("Provider");
-                    loginArrayList.add("Del");
-                    passwordArrayList.add("Saleman1");
-                    passwordArrayList.add("Provider1");
-                    passwordArrayList.add("Del1");
-                    loginArrayList.add("Saleman1");
-                    passwordArrayList.add("Saleman1");
-                    loginArrayList.add("Provider1");
                     passwordArrayList.add("Provider1");
 
                     do {
@@ -110,7 +103,7 @@ public class Main {
                         }
                         ;
                         if (haveInArray == true) {
-                            System.out.println("Saleman, you have loged in successfully!");
+                            System.out.println("Provider, you have loged in successfully!");
                             providerActions();
                             break;
                         } else {
@@ -125,8 +118,8 @@ public class Main {
 
                     ArrayList<String> loginArrayList = new ArrayList<String>();
                     ArrayList<String> passwordArrayList = new ArrayList<String>();
-                    loginArrayList.add("provider");
-                    passwordArrayList.add("provider1");
+                    loginArrayList.add("saleman");
+                    passwordArrayList.add("saleman1");
 
                     do {
                         System.out.print("Enter your login: ");
@@ -150,7 +143,7 @@ public class Main {
                         ;
                         if (haveInArray == true) {
                             System.out.println("Provider, you have loged in successfully!");
-                            Menu();
+                            providerActions();
                             break;
                         } else {
                             System.out.println("Try again");
@@ -211,15 +204,20 @@ public class Main {
                     System.out.println("(5)Отчет по закупкам бытовой техники");
                     System.out.println("(0)Выход");
                     do {
-                        System.out.print("Ваш выбор: ");
+                        System.out.print("Your choice: ");
                         String chooseAction = sc.nextLine();
                         switch (chooseAction) {
                             case "action1":
                             case "Action1":
                             case "1":
-                                System.out.println("Действие 1");
-                                action1();
-                                providerActions();
+                                System.out.println("Action 1");
+                                try {
+                                    ConnectionDB.forDelivery();
+                                } catch (IOException e) {
+                                    System.out.println(e.getMessage());
+                                } catch (SQLException e) {
+                                    System.out.println(e.getMessage());
+                                }
                                 break;
                             case "action2":
                             case "Action2":
@@ -391,7 +389,7 @@ public class Main {
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------------------------------------------------------------------------------------------
 //         Salemans actions
-                public static void Menu() throws IOException {
+                public static void salemansAction() throws IOException {
                     System.out.println("1. Show full list of textiles for sale");
                     System.out.println("2. Search for textile");
                     System.out.println("3. Show the report about sales");
@@ -411,7 +409,7 @@ public class Main {
                         var action = input.nextLine();
                         switch (action) {
                             case "0":
-                                Menu();
+                                salemansAction();
                                 break;
                             case "1":
                                 ShowFullList();
@@ -669,7 +667,7 @@ public class Main {
                             if (ask == 1) {
                                 Delete();
                             } else if (ask == 0) {
-                                Menu();
+                                deliverymanActions();
                             }
                         }
                         var skipIndex = 0;

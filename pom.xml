@@ -14,6 +14,7 @@
             <version>3.8.1</version>
         </dependency>
 
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -26,8 +27,21 @@
             <version>3.17</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.5.1</version>
+        </dependency>
+
+
 
     </dependencies>
+
+    <properties>
+        <server>localhost</server>
+        <database></database>
+        <port>1433</port>
+    </properties>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
