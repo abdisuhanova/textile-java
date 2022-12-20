@@ -142,8 +142,8 @@ public class Main {
                         }
                         ;
                         if (haveInArray == true) {
-                            System.out.println("Provider, you have loged in successfully!");
-                            providerActions();
+                            System.out.println("Saleman, you have loged in successfully!");
+                            salemansAction();
                             break;
                         } else {
                             System.out.println("Try again");
@@ -198,7 +198,7 @@ public class Main {
 
                     System.out.println("Menu:");
                     System.out.println("(1)Show list of textiles for sale");
-                    System.out.println("(2)Показать количество бытовой техники");
+                    System.out.println("(2)Show количество бытовой техники");
                     System.out.println("(3)Максимальное количество бытовой техники");
                     System.out.println("(4)Минимальное количество бытовой техники");
                     System.out.println("(5)Отчет по закупкам бытовой техники");
@@ -212,7 +212,7 @@ public class Main {
                             case "1":
                                 System.out.println("Action 1");
                                 try {
-                                    ConnectionDB.forDelivery();
+                                    C.forDelivery();
                                 } catch (IOException e) {
                                     System.out.println(e.getMessage());
                                 } catch (SQLException e) {
@@ -398,293 +398,72 @@ public class Main {
                     //System.out.println("6. Показать отсутствующие на складе бытовые техники");
                     //System.out.println("7. Показать все бытовые техники, на которых действует скидка");
                     System.out.println("6. Delete an order");
-                    System.out.println("7. Exit");
+                    System.out.println("7. Choose another user");
+                    System.out.println("8. Exit");
                     ShowMenu();
                 }
-
                 public static void ShowMenu() throws IOException {
                     Scanner input = new Scanner(System.in);
                     while (true) {
-                        System.out.print("(Type [0], for looking at the menu again) Enter-->");
-                        var action = input.nextLine();
+                        String action = input.nextLine();
                         switch (action) {
                             case "0":
                                 salemansAction();
                                 break;
                             case "1":
-                                ShowFullList();
+                                C.listForSale();
                                 break;
                             case "2":
-                                Search();
+                                System.out.println("Search by name[0] or date[1]");
+                                if (input.nextInt() == 0) {
+                                    System.out.println("Enter the name: ");
+                                    C.searchName(input.nextLine());
+                                } else if (input.nextInt() == 1) {
+                                    System.out.println("Enter a date[yyyy:mm:dd");
+                                    C.searchDate(input.nextLine());
+                                } else {
+                                    System.out.println("Unexpected input!");
+                                }
                                 break;
                             case "3":
-                                ShowReport();
+                                C.soldOut();
                                 break;
                             case "4":
-                                Order();
+                                System.out.println("Enter teh name of teh textile you want to sell: ");
+                                C.sell(input.nextLine());
                                 break;
                             case "5":
-                                OrderList();
+                                C.soldOut();
+                                System.out.println("Enter a textiles name to order: ");
+                                C.order(input.nextLine());
                                 break;
-                            //case "6":
-                              //  Lack();
-                                //break;
-                            //case "7":
-                              //  Discount();
-                                //break;
                             case "6":
-                                Delete();
+                                System.out.println("Which order you want to cancel?\nEnter a name of the textile: ");
+                                C.cancel(input.nextLine());
                                 break;
-                            case "n":
+                            case "7":
                                 try {
                                     chooseUsers();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                            case "7":
+                            case "8":
                                 exit();
                                 break;
                             default:
                                 System.out.print("Please, enter number from menu.");
                         }
-                    }
-                }
-
-                private static void ShowFullList() throws FileNotFoundException, IOException {
-                    try {
-                        FileInputStream file = new FileInputStream(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\БытоваяТехника.xlsx"));
-                        XSSFWorkbook workbook = new XSSFWorkbook(file);
-                        XSSFSheet sheet = workbook.getSheetAt(0);
-                        Iterator<Row> rowIterator = sheet.iterator();
-
-                        while (rowIterator.hasNext()) {
-                            Row row = rowIterator.next();
-                            for (var colIndex = 0; colIndex < 3; colIndex += 2) {
-                                Cell cell = row.getCell(colIndex);
-                                switch (cell.getCellType()) {
-                                    case Cell.CELL_TYPE_NUMERIC:
-                                        System.out.printf("%.0f", cell.getNumericCellValue());
-                                        break;
-                                    case Cell.CELL_TYPE_STRING:
-                                        System.out.print(cell.getStringCellValue() + "\t\t");
-                                        break;
-                                }
-                            }
-                            System.out.println();
-                        }
-                        file.close();
-                    } catch (Exception e) {
-                        System.out.println("Smth is wrong!");
-                    }
-                }
-
-                private static void Search() throws FileNotFoundException, IOException {
-                    Scanner input = new Scanner(System.in);
-                    FileInputStream file = new FileInputStream(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\БытоваяТехника.xlsx"));
-                    XSSFWorkbook workbook = new XSSFWorkbook(file);
-                    XSSFSheet sheet = workbook.getSheetAt(0);
-                    System.out.print("Enter the name of textile or id-->");
-                    String search = input.nextLine();
-                    Iterator<Row> rowIterator = sheet.iterator();
-                    while (rowIterator.hasNext()) {
-                        Row row = rowIterator.next();
-                        var name = row.getCell(0);
-                        var sernum = row.getCell(1);
-                        if (name.getStringCellValue().trim().equals(search) || sernum.getStringCellValue().trim().equals(search)) {
-                            Iterator<Cell> cellIterator = row.cellIterator();
-                            while (cellIterator.hasNext()) {
-                                Cell cell = cellIterator.next();
-                                switch (cell.getCellType()) {
-                                    case Cell.CELL_TYPE_NUMERIC:
-                                        System.out.printf("%.0f", cell.getNumericCellValue());
-                                        System.out.print("\t\t");
-                                        break;
-                                    case Cell.CELL_TYPE_STRING:
-                                        System.out.print(cell.getStringCellValue() + "\t\t");
-                                        break;
-                                }
-                            }
-                            System.out.println();
-                        }
-
-                    }
-                    file.close();
-                }
-
-                private static void ShowReport() {
-                    try {
-                        FileInputStream file = new FileInputStream(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\БытоваяТехника.xlsx"));
-                        XSSFWorkbook workbook = new XSSFWorkbook(file);
-                        XSSFSheet sheet = workbook.getSheetAt(0);
-                        Iterator<Row> rowIterator = sheet.iterator();
-
-                        while (rowIterator.hasNext()) {
-                            Row row = rowIterator.next();
-                            for (var colIndex = 0; colIndex < 5; colIndex += 2) {
-                                Cell cell = row.getCell(colIndex);
-                                switch (cell.getCellType()) {
-                                    case Cell.CELL_TYPE_NUMERIC:
-                                        System.out.printf("%.0f", cell.getNumericCellValue());
-                                        System.out.print("\t\t");
-                                        break;
-                                    case Cell.CELL_TYPE_STRING:
-                                        System.out.print(cell.getStringCellValue() + "\t\t");
-                                        break;
-                                }
-                            }
-                            System.out.println();
-                        }
-                        file.close();
-                    } catch (Exception e) {
-                        System.out.println("Smth is wrong!");
-                    }
-                }
-
-                private static void Order() {
-                    String path = "C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt";
-                    try {
-                        BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
-                        Scanner input = new Scanner(System.in);
-
-                        do {
-                            System.out.print("Enter name of the textile, which you want to order-->");
-                            String thing = input.nextLine();
-                            if (thing == null || StringUtils.isEmpty(thing.trim())) {
-                                break;
-                            } else {
-                                writer.newLine();
-                                writer.write(thing);
-                            }
-
-                        } while (true);
-                        writer.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    } finally {
-                        System.out.println("Order is placed.");
-                    }
-                }
-
-                private static void OrderList() {
-                    String path = "C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt";
-                    try {
-                        BufferedReader reader = new BufferedReader(new FileReader(path));
-                        while (reader.ready()) {
-                            System.out.println(reader.readLine());
-                        }
-                        reader.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    } finally {
-                        System.out.println("Ordered textile was shown for current time.");
-                    }
-                }
-
-                private static void Lack() throws FileNotFoundException, IOException {
-                    FileInputStream file = new FileInputStream(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\БытоваяТехника.xlsx"));
-                    XSSFWorkbook workbook = new XSSFWorkbook(file);
-                    XSSFSheet sheet = workbook.getSheetAt(0);
-                    Iterator<Row> rowIterator = sheet.iterator();
-                    while (rowIterator.hasNext()) {
-                        Row row = rowIterator.next();
-                        var amount = row.getCell(2);
-                        amount.setCellType(Cell.CELL_TYPE_STRING);
-                        if (amount.getStringCellValue().equals("0")) {
-                            for (var colIndex = 0; colIndex < 3; colIndex += 2) {
-                                Cell cell = row.getCell(colIndex);
-                                switch (cell.getCellType()) {
-                                    case Cell.CELL_TYPE_NUMERIC:
-                                        System.out.printf("%.0f", cell.getNumericCellValue());
-                                        System.out.print("\t\t");
-                                        break;
-                                    case Cell.CELL_TYPE_STRING:
-                                        System.out.print(cell.getStringCellValue() + "\t\t");
-                                        break;
-                                }
-                            }
-                            System.out.println();
-                        }
-                    }
-                    file.close();
-                }
-
-                private static void Discount() throws FileNotFoundException, IOException {
-                    FileInputStream file = new FileInputStream(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\БытоваяТехника.xlsx"));
-                    XSSFWorkbook workbook = new XSSFWorkbook(file);
-                    XSSFSheet sheet = workbook.getSheetAt(0);
-                    Iterator<Row> rowIterator = sheet.iterator();
-                    while (rowIterator.hasNext()) {
-                        Row row = rowIterator.next();
-                        var amount = row.getCell(3);
-                        amount.setCellType(Cell.CELL_TYPE_STRING);
-                        if (amount.getStringCellValue().equals("0%")) {
-                            continue;
+                        System.out.print("(Type [0], for looking at the menu again) Enter-->");
+                        if (input.nextInt() == 0) {
+                            salemansAction();
                         } else {
-                            for (var colIndex = 0; colIndex < 4; colIndex++) {
-                                if (colIndex == 1) {
-                                    continue;
-                                }
-                                Cell cell = row.getCell(colIndex);
-                                switch (cell.getCellType()) {
-                                    case Cell.CELL_TYPE_NUMERIC:
-                                        System.out.printf("%.0f", cell.getNumericCellValue());
-                                        System.out.print("\t\t");
-                                        break;
-                                    case Cell.CELL_TYPE_STRING:
-                                        System.out.print(cell.getStringCellValue() + "\t\t");
-                                        break;
-                                }
+                            try {
+                                chooseUsers();
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                            System.out.println();
                         }
-                    }
-                    file.close();
-                }
 
-                private static void Delete() {
-                    String path = "C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt";
-                    try {
-                        BufferedReader reader = new BufferedReader(new FileReader(path));
-                        int count = 0;
-                        String letter = "";
-                        Scanner input = new Scanner(System.in);
-                        System.out.print("Enter-->");
-                        String delThing = input.next();
-                        Scanner scanner = new Scanner(new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt"));
-                        boolean haveIt = false;
-                        while (scanner.hasNextLine()) {
-                            String line = scanner.nextLine();
-                            count++;
-                            if (line.contains(delThing)) {
-                                haveIt = true;
-                                break;
-                            }
-                        }
-                        if (haveIt == false) {
-                            System.out.println("There's no textile like this in a file");
-                            System.out.print("Do you want to exit[0] or try again[1]?-->");
-                            int ask = input.nextInt();
-                            if (ask == 1) {
-                                Delete();
-                            } else if (ask == 0) {
-                                deliverymanActions();
-                            }
-                        }
-                        var skipIndex = 0;
-                        while (reader.ready()) {
-                            skipIndex++;
-                            if (skipIndex != count) {
-                                letter += reader.readLine() + "\n";
-                            } else {
-                                reader.readLine();
-                            }
-                        }
-                        System.out.println(letter);
-                        reader.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    } finally {
-                        System.out.println("Updated version of list of ordered textiles was shown.");
                     }
                 }
 
