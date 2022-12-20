@@ -223,7 +223,13 @@ public class Main {
                             case "Action2":
                             case "2":
                                 System.out.println("Действие 2");
-                                action2();
+                                try {
+                                    C.provided();
+                                } catch (IOException e) {
+                                    System.out.println(e.getMessage());
+                                } catch (SQLException e) {
+                                    System.out.println(e.getMessage());
+                                };
                                 providerActions();
                                 break;
                             case "action3":
@@ -267,124 +273,10 @@ public class Main {
                     } while (true);
                 }
 
-                public static void action1() {
-                    try {
-                        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt"));
-                        while (br.ready()) {
-                            System.out.print(br.readLine() + " ");
-                        }
-                        System.out.println();
-                        br.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                }
 
-                public static void action2() {
-                    try {
-                        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt"));
-                        int count = 0;
-                        while (br.ready()) {
-                            br.readLine();
-                            count++;
-                        }
-                        BufferedReader br1 = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt"));
-                        int count1 = 0;
-                        while (br1.ready()) {
-                            br1.readLine();
-                            count1++;
-                        }
-                        System.out.println("Всего товаров = " + (int) (count + count1));
-                        br1.close();
-                        br.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                }
 
-                public static void action3() {
-                    try {
-                        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt"));
-                        HashMap<String, Integer> d = new HashMap<>();
-                        while (br.ready()) {
-                            String line = br.readLine();
-                            if (d.containsKey(line)) {
-                                d.put(line, (int) (d.get(line) + 1));
-                            } else {
-                                d.put(line, 1);
-                            }
-                        }
 
-                        System.out.println(d);
-                        String s = "dsd";
-                        int m = 0;
-                        for (String i : d.keySet()) {
-                            if (d.get(i) > m) {
-                                m = d.get(i);
-                                s = i;
-                            }
-                        }
-                        System.out.println("Максимальное количество бытовой техники " + s);
-                        br.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                }
 
-                public static void action4() {
-                    try {
-                        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt"));
-                        HashMap<String, Integer> d = new HashMap<>();
-                        while (br.ready()) {
-                            String line = br.readLine();
-                            if (d.containsKey(line)) {
-                                d.put(line, (int) (d.get(line) + 1));
-                            } else {
-                                d.put(line, 1);
-                            }
-                        }
-                        System.out.println(d);
-                        String s = "dsd";
-                        int m = 100;
-                        for (String i : d.keySet()) {
-                            if (d.get(i) < m) {
-                                m = d.get(i);
-                                s = i;
-                            }
-                        }
-                        System.out.println("Минимальное количество бытовой техники:" + s);
-                        br.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                }
-
-                public static void action5() {
-                    try {
-                        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt"));
-                        System.out.print("Доставленная бытовая техника ");
-                        int countLine = 0;
-                        while (br.ready()) {
-                            System.out.print(br.readLine() + ", ");
-                            countLine++;
-                        }
-                        System.out.println("Количество = " + countLine);
-                        BufferedReader br1 = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt"));
-                        System.out.print("Заказанная бытовая техника ");
-                        int countline = 0;
-                        while (br1.ready()) {
-                            System.out.print(br1.readLine() + ", ");
-                            countline++;
-                        }
-                        System.out.println("Количество = " + countline);
-                        br1.close();
-                        br.close();
-                    } catch (FileNotFoundException e) {
-                        System.out.println(e);
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                }
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------------------------------------------------------------------------------------------
@@ -498,30 +390,25 @@ public class Main {
                         case "Action1":
                         case "1":
                             //LIST OF ORDERED TEXTILES.
-                            try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt"))) {
-                                String line = null;
-                                while ((line = br.readLine()) != null) {
-                                    System.out.println(line);
-                                }
+                            try {
+                                C.forDelivery();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                System.out.println(e.getMessage());
+                            } catch (SQLException e) {
+                                System.out.println(e.getMessage());
                             }
-                            deliverymanActions();
                             break;
 
                         case "action2":
                         case "Action2":
                         case "2":
-                            //СПИСОК ДОСТАВЛЕННОЙ ТЕХНИКИ.
-                            try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt"))) {
-                                String line = null;
-                                while ((line = br.readLine()) != null) {
-                                    System.out.println(line);
-                                }
+                            try {
+                                C.deliveredList();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                System.out.println(e.getMessage());
+                            } catch (SQLException e) {
+                                System.out.println(e.getMessage());
                             }
-                            deliverymanActions();
                             break;
 
                         case "action3":
@@ -529,43 +416,8 @@ public class Main {
                         case "3":
                             System.out.println("Действие 3");
                             //--ДОСТАВИТЬ ЗАКАЗ--
-                            ArrayList<String> appliances = new ArrayList<String>(); // Для доставки
-                            try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt"))) {
-                                String line = null;
-                                while ((line = br.readLine()) != null) {
-                                    appliances.add(line);
-                                }
-                                System.out.println(appliances);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt", true))) {
-                                String i = "";
-                                bw.write(i);
-                                if (i.equals(i)) {
-                                    bw.close();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt", true))) {
-                                int i = 0;
-                                while (i <= appliances.size()) {
-                                    if (i == appliances.size()) {
-                                        bw.close();
-                                        System.out.println("Delivered!");
-                                        break;
-                                    } else {
-                                        bw.newLine();
-                                        bw.write(appliances.get(i));
-                                        i++;
-                                    }
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            deliverymanActions();
+                            System.out.println("Enter the name of the delivered textile: ");
+                            C.deliver(sc.nextLine());
                             break;
 
                         case "action4":
@@ -573,30 +425,12 @@ public class Main {
                         case "4":
                             //--Quantity of delivered textile--
                             try {
-
-                                File myFile = new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt");
-                                FileReader fileReader = new FileReader(myFile);
-                                LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
-
-                                int lineNumber = 0;
-
-                                while (lineNumberReader.readLine() != null) {
-                                    lineNumber++;
-                                }
-
-                                System.out.println(lineNumber);
-
-                                lineNumberReader.close();
-
-                                String lineNumber1 = String.valueOf(lineNumber);
-                                File newFile = new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\kol.txt");
-                                FileWriter fileWriter = new FileWriter(newFile);
-                                fileWriter.write(lineNumber1 + " Lines in a file: " + "C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt");
-                                fileWriter.close();
+                                C.delivered();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                System.out.println(e.getMessage());
+                            } catch (SQLException e) {
+                                System.out.println(e.getMessage());
                             }
-                            deliverymanActions();
                             break;
 
 
@@ -605,60 +439,24 @@ public class Main {
                         case "5":
                             //--КОЛ-ВО ЗАКАЗАННОЙ БЫТ.ТЕХНИКИ--
                             try {
-
-                                File myFile = new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt");
-                                FileReader fileReader = new FileReader(myFile);
-                                LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
-
-                                int lineNumber = 0;
-
-                                while (lineNumberReader.readLine() != null) {
-                                    lineNumber++;
-                                }
-
-                                System.out.println(lineNumber);
-
-                                lineNumberReader.close();
-
-                                String lineNumber1 = String.valueOf(lineNumber);
-                                File newFile = new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\kol.txt");
-                                FileWriter fileWriter = new FileWriter(newFile);
-                                fileWriter.write(lineNumber1 + " Lines in file: " + "C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\zak.txt");
-                                fileWriter.close();
+                                C.provided();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                System.out.println(e.getMessage());
+                            } catch (SQLException e) {
+                                System.out.println(e.getMessage());
                             }
-                            deliverymanActions();
                             break;
 
                         case "action6":
                         case "Action6":
                         case "6":
-                            int count = 0;
-
                             try {
-                                // create a new file object
-                                File file = new File("C:\\Users\\ainura_inai\\IdeaProjects\\Sample\\src\\dos.txt");
-
-                                // create an object of Scanner
-                                // associated with the file
-                                Scanner mn = new Scanner(file);
-
-                                // read each line and
-                                // count number of lines
-                                while (mn.hasNextLine()) {
-                                    mn.nextLine();
-                                    count++;
-                                }
-                                System.out.println("Total Number of Delivered techniques: " + count);
-                                System.out.println("Your Earnings: " + count * 2000);
-                                // close scanner
-                                mn.close();
-                            } catch (Exception e) {
-                                e.getStackTrace();
+                                C.salary();
+                            } catch (IOException e) {
+                                System.out.println(e.getMessage());
+                            } catch (SQLException e) {
+                                System.out.println(e.getMessage());
                             }
-
-                            deliverymanActions();
                             break;
 
                         default:
