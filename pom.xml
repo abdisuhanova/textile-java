@@ -38,12 +38,6 @@
     </dependencies>
 
     <properties>
-        <server>localhost</server>
-        <database></database>
-        <port>1433</port>
-    </properties>
-
-    <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
