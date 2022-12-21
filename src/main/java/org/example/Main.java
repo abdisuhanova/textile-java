@@ -31,10 +31,10 @@ public class Main {
 
                     System.out.println("Choose your speciality :");
                     System.out.println("(1) Provider");
-                    System.out.println("(2) Saleman");
+                    System.out.println("(2) Salesman");
                     System.out.println("(3) Delivery");
                     do {
-                        System.out.print("Ваш выбор: ");
+                        System.out.print("Your choice: ");
                         String choose = sc.nextLine();
                         switch (choose) {
                             case "Provider":
@@ -44,10 +44,10 @@ public class Main {
                                 System.out.println("Enter your login and password");
                                 providerInputLgPw();
                                 break;
-                            case "saleman":
-                            case "Saleman":
+                            case "Salesman":
+                            case "salesman":
                             case "2":
-                                System.out.println("Welcome, Saleman");
+                                System.out.println("Welcome, Salesman");
                                 System.out.println("Enter your login and password");
                                 salemanInputLgPw();
                                 break;
@@ -73,7 +73,7 @@ public class Main {
                     return "";
                 }
 
-                // Providers autorization
+                // Providers authorization
                 public static void providerInputLgPw() {
                     Scanner sc = new Scanner(System.in);
 
@@ -103,7 +103,7 @@ public class Main {
                         }
                         ;
                         if (haveInArray == true) {
-                            System.out.println("Provider, you have loged in successfully!");
+                            System.out.println("Provider, you have logged in successfully!");
                             providerActions();
                             break;
                         } else {
@@ -118,8 +118,8 @@ public class Main {
 
                     ArrayList<String> loginArrayList = new ArrayList<String>();
                     ArrayList<String> passwordArrayList = new ArrayList<String>();
-                    loginArrayList.add("saleman");
-                    passwordArrayList.add("saleman1");
+                    loginArrayList.add("salesman");
+                    passwordArrayList.add("salesman1");
 
                     do {
                         System.out.print("Enter your login: ");
@@ -142,7 +142,7 @@ public class Main {
                         }
                         ;
                         if (haveInArray == true) {
-                            System.out.println("Saleman, you have loged in successfully!");
+                            System.out.println("Salesman, you have logged in successfully!");
                             salemansAction();
                             break;
                         } else {
@@ -151,7 +151,7 @@ public class Main {
                     } while (true);
                 }
 
-                // Deliverymans autorization
+                // Deliveryman's authorization
                 public static void deliverymanInputLgPw() throws IOException {
                     Scanner sc = new Scanner(System.in);
 
@@ -182,7 +182,7 @@ public class Main {
                         }
                         ;
                         if (haveInArray == true) {
-                            System.out.println("Welcome deliveryman!");
+                            System.out.println("Welcome Deliveryman!");
                             deliverymanActions();
                             break;
                         } else {
@@ -198,11 +198,11 @@ public class Main {
 
                     System.out.println("Menu:");
                     System.out.println("(1)Show list of textiles for sale");
-                    System.out.println("(2)Show количество бытовой техники");
-                    System.out.println("(3)Максимальное количество бытовой техники");
-                    System.out.println("(4)Минимальное количество бытовой техники");
-                    System.out.println("(5)Отчет по закупкам бытовой техники");
-                    System.out.println("(0)Выход");
+                    System.out.println("(2)Show number of textiles");
+                    System.out.println("(3)Maximum number of textiles");
+                    System.out.println("(4)Minimum number of textiles");
+                    System.out.println("(5)Purchasing report");
+                    System.out.println("(0)Log off");
                     do {
                         System.out.print("Your choice: ");
                         String chooseAction = sc.nextLine();
@@ -222,7 +222,7 @@ public class Main {
                             case "action2":
                             case "Action2":
                             case "2":
-                                System.out.println("Действие 2");
+                                System.out.println("Action 2");
                                 try {
                                     C.provided();
                                 } catch (IOException e) {
@@ -235,26 +235,26 @@ public class Main {
                             case "action3":
                             case "Action3":
                             case "3":
-                                System.out.println("Действие 3");
+                                System.out.println("Action 3");
                                 action3();
                                 providerActions();
                                 break;
                             case "action4":
                             case "Action4":
                             case "4":
-                                System.out.println("Действие 4");
+                                System.out.println("Action 4");
                                 action4();
                                 providerActions();
                                 break;
                             case "action5":
                             case "Action5":
                             case "5":
-                                System.out.println("Действие 5");
+                                System.out.println("Action 5");
                                 action5();
                                 providerActions();
                                 break;
                             default:
-                                System.out.println("Такого действия нет в программе!");
+                                System.out.println("This action doesn't exist in the program!");
                                 providerActions();
                                 break;
                             case "n":
@@ -266,7 +266,7 @@ public class Main {
                             case "action0":
                             case "Action0":
                             case "0":
-                                System.out.println("Выход");
+                                System.out.println("Log off");
                                 break;
                         }
                         break;
@@ -280,15 +280,13 @@ public class Main {
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------------------------------------------------------------------------------------------
-//         Salemans actions
+//         Salesman's actions
                 public static void salemansAction() throws IOException {
                     System.out.println("1. Show full list of textiles for sale");
                     System.out.println("2. Search for textile");
                     System.out.println("3. Show the report about sales");
                     System.out.println("4. Place an order for an out-of-stock textile");
                     System.out.println("5.  Complete the sale of textile");
-                    //System.out.println("6. Показать отсутствующие на складе бытовые техники");
-                    //System.out.println("7. Показать все бытовые техники, на которых действует скидка");
                     System.out.println("6. Delete an order");
                     System.out.println("7. Choose another user");
                     System.out.println("8. Exit");
@@ -370,14 +368,14 @@ public class Main {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Menu:");
                 System.out.println("(1)List of textiles for delivery.");
-                System.out.println("(2)Доставленная бытовая техника.");
-                System.out.println("(3)Доставить бытовую технику.");
-                System.out.println("(4)Количество доставленной бытовой.");
-                System.out.println("(5)Количество заказанной бытовой техники.");
-                System.out.println("(6)Мой заработок.");
-                System.out.println("(0)Выход");
+                System.out.println("(2)Delivered textiles");
+                System.out.println("(3)Deliver the textiles");
+                System.out.println("(4)Number of delivered textiles");
+                System.out.println("(5)Number of ordered textiles");
+                System.out.println("(6)My earnings");
+                System.out.println("(0)Log off");
                 do {
-                    System.out.print("Ваш выбор: ");
+                    System.out.print("Your choice: ");
                     String chooseAction = sc.nextLine();
                     switch (chooseAction) {
                         case "n":
@@ -414,8 +412,8 @@ public class Main {
                         case "action3":
                         case "Action3":
                         case "3":
-                            System.out.println("Действие 3");
-                            //--ДОСТАВИТЬ ЗАКАЗ--
+                            System.out.println("Action 3");
+                            //--Deliver the textiles--
                             System.out.println("Enter the name of the delivered textile: ");
                             C.deliver(sc.nextLine());
                             break;
@@ -437,7 +435,7 @@ public class Main {
                         case "action5":
                         case "Action5":
                         case "5":
-                            //--КОЛ-ВО ЗАКАЗАННОЙ БЫТ.ТЕХНИКИ--
+                            //--Number of delivered textiles--
                             try {
                                 C.provided();
                             } catch (IOException e) {
@@ -460,7 +458,7 @@ public class Main {
                             break;
 
                         default:
-                            System.out.println("There's such action in the program!");
+                            System.out.println("There's not such action in the program!");
                             deliverymanActions();
                             break;
 
