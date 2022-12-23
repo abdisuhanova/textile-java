@@ -10,7 +10,7 @@ public class C {
     public static void listForSale() {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -29,7 +29,7 @@ public class C {
     public static void searchName(String name) {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -50,7 +50,7 @@ public class C {
     public static void searchDate(String date) {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -71,7 +71,7 @@ public class C {
     public static void soldOut() {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -90,7 +90,7 @@ public class C {
     public static void sell(String name) {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -107,7 +107,7 @@ public class C {
     public static void order(String name) {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -123,7 +123,7 @@ public class C {
     public static void cancel(String name) {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -141,7 +141,7 @@ public class C {
     public static void forDelivery() throws IOException, SQLException {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -159,7 +159,7 @@ public class C {
     public static void deliver(String name) {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -181,7 +181,7 @@ public class C {
     public static void delivered() throws IOException, SQLException {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             int count = 0;
             connection = DriverManager.getConnection(jdbcURL, username, password);
@@ -200,7 +200,7 @@ public class C {
     public static void deliveredList() throws IOException, SQLException {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             Statement statement = connection.createStatement();
@@ -221,7 +221,7 @@ public class C {
     public static void salary() throws IOException, SQLException {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             int count = 0;
             connection = DriverManager.getConnection(jdbcURL, username, password);
@@ -243,7 +243,7 @@ public class C {
     public static void provided() throws IOException, SQLException {
         String jdbcURL = "jdbc:postgresql://localhost:5432/java-project1";
         String username = "postgres";
-        String password = "49577982";
+        String password = "password";
         try {
             int count = 0;
             connection = DriverManager.getConnection(jdbcURL, username, password);
